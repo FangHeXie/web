@@ -1,276 +1,35 @@
-﻿
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Cache-Control" content="no-transform" /> 
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-<title>网络发言防和谐器 官方网站|百度贴吧和谐测试器</title>
-<meta name="keywords" content="百度贴吧和谐测试器,敏感词过滤,敏感词检测">
-<meta name="description" content="在线一键分隔、过滤敏感词！">
+<title>关于我们_网络发言防和谐器 官方网站</title>
 <link href="main.css" rel="stylesheet" type="text/css">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes" />
-<meta name="applicable-device"content="pc,mobile">
+<STYLE type=text/css>
+#dibu{padding-top:2px;}
+</STYLE>
 </head>
-<body onLoad="checkCopyer();">
+<body>
 <!--页顶开始-->
-<table width="100%" align="center" cellspacing="5" id="daohang"><tr><td width="52"><div class="logo"></div></td>
-<td><b>网络发言防和谐器</b><div class="gaodu"></div><span class="txt">在线一键分隔、过滤敏感词！&nbsp;&nbsp;&nbsp;&nbsp;--2019.1.17 在线版更新说明：长期没有维护，本次更新较新浏览器未装FLASH时的“复制”按钮支持。</td><td align="right"  width="180"><span class="txt"><a href="help.html" target="_blank">使用帮助：还是发不出去？&nbsp</a></div><div class="moshi">请选择功能：</div></td></tr></table>
+<table width="100%" cellspacing="5"><tr><td width="52"><div class="logo"></div></td>
+<td><b>网络发言防和谐器</b><div class="gaodu"></div><span class="txt">提供全网络通用的在线敏感词过滤服务，也是一款绿色、免费、开源的自由软件。</span></td></tr></table>
 <!--页顶结束-->
-<div id="neiron">
-<!--在线版栏-->
-<table width="100%" id="zaixianban" cellspacing="5" align="center"><tr><td width="60"><span class="txt2"><b>在线版</b></span></td><td align="left"><div id="ciku_load2" style="visibility:block" class="ciku_load2">“敏感词过滤”功能载入中……</div><div id="minganci0"></div></td><td align="right"></td></tr></table>
-<table width="100%" align="center" cellspacing="0" id="main"><tr><td><form action="" method="post" name="form" id="form">
-<div id="load"><span class="zairu"><b>在线版载入中&nbsp;&nbsp;请稍候…</b></span></div>
-</td>
-<td width="180" id="youcecaidan"><table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>
-<div id="youcecaidan_A">
-<a href="#" class="modes_sel" id="modemenu1" onClick="changeMode(1);">敏感词过滤</a>
-<div style='position:relative;width:0;height:0'><div id="ciku_load" style="visibility:block" class="ciku_load">载入中…</div></div>
-<div id="mode1" class="shown_mode">
-可自动分隔过滤敏感词
-<br>过滤级别选择：<select id="level_select" class="combo">
-<option value="low">低</option><option value="medium">中(荐)</option><option value="high">高</option>
-</select>
-<br>分隔符：<input type="text" maxlength="1"  size="1" id="separator"  value="卝"/>  <input type="button"  onclick="generateSeparator(1)" class="pbtn0" value="随机"/>　<a href="#" id="help">[？]<span id="tip_info1">百度贴吧只能用中文分隔符，偏旁、括号内打字都无效！若发不出可更换分隔符再试！</span></a>
-</div>
-<a href="#" class="modes" id="modemenu3" onClick="changeMode(3);">竖排文字</a>
-<div id="mode3" class="hidden_mode">
-发出去后效果比看上去好
-<div id="shouji_mini">
-每页 
-<SELECT id="x"><OPTION value=5>5</OPTION><OPTION value=8>8</OPTION><OPTION value=9>9</OPTION><OPTION value=10 selected>10</OPTION><OPTION value=11>11</OPTION><OPTION value=12>12</OPTION><OPTION value=13>13</OPTION><OPTION value=14>14</OPTION><OPTION value=15>15</OPTION><OPTION value=16>16</OPTION><OPTION value=17>17</OPTION><OPTION value=18>18</OPTION><OPTION value=19>19</OPTION><OPTION value=20>20</OPTION><OPTION value=25>25</OPTION><OPTION value=30>30</OPTION></SELECT>
-竖行,<br>每竖 
-<SELECT id="y"><OPTION value=5>5</OPTION><OPTION value=8>8</OPTION><OPTION value=9>9</OPTION><OPTION value=10>10</OPTION><OPTION value=11>11</OPTION><OPTION value=12>12</OPTION><OPTION value=13>13</OPTION><OPTION value=14>14</OPTION><OPTION value=15>15</OPTION><OPTION value=16>16</OPTION><OPTION value=17>17</OPTION><OPTION value=18>18</OPTION><OPTION value=19>19</OPTION><OPTION value=20 selected>20</OPTION><OPTION value=25>25</OPTION><OPTION value=30>30</OPTION></SELECT>
-个字,
-<br>使用 <SELECT id="tbl"><OPTION value=0>粗实线+细实线</OPTION><OPTION value=1 selected>双实线+细实线</OPTION><OPTION value=2>细实线+细虚线</OPTION><OPTION value=3>无线框</OPTION><OPTION value=4>无头尾线框</OPTION></SELECT>
-</div></div>
-<a href="#" class="modes" id="modemenu5" onClick="changeMode(5);">倒排文字</a>
-<div id="mode5" class="hidden_mode">
-让整篇文章倒转过来，当然你得习惯从右往左看。
-</div>
-<a href="#" class="modes" id="modemenu4" onClick="changeMode(4);">强行分隔</a> 
-<div id="mode4" class="hidden_mode">
-在每个字符间插入分隔符。
-<div id="shouji_mini">
-<br>分隔符
-<select name="fgf1" id="fgf1"><option value="卝">卝</option><option value="丶">丶(贴吧不能用)</option><option value="丨">丨(贴吧不能用)</option></select>
-</div></div>
+<div id="neiron" style="border-top:3px solid #fff;padding-top:8px;">
+<table width="770" id="main" cellspacing="10" align="center"><tr><td>
 
-<a href="#" class="modes" id="modemenu7" onClick="changeMode(7);">文章排版</a> 
-<div id="mode7" class="hidden_mode">
-让每个自然段落前空两格<br>并在段落后换两行。
-</div>
-</div>
-</td>
-  </tr>
-  <tr>
-    <td>
-</td>
-  </tr>
-</table>
-</td></form>
-  </tr>
-</table>
-<!--下载栏，根据授权协议不可去除此栏！-->
-<div id="huangneiron">
-<table width="500" id="DownloadBox" cellspacing="0" align="center"><tr><td>
-<table width="100%" cellspacing="0"><tr><td><a href="https://github.com/FangHeXie/download/blob/master/fanghexie.rar?raw=true" class="Download" target="_blank"></a></td>
-<td width="100%"><table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td width="160"><span class="txt3"><b>&nbsp;Windows桌面版</b></span></td><td align="left"><span class="txt2"><div style="color:#F00">支持文字转图片</div></span><td></tr></table>
-<span style="position:relative;top:4px;left:10px;width: 100%;" class="txt_hui">
-版本：2.61
-<br>发布时间：1月26日
-<br>大小：0.6MB
-<br><span style="position:relative;top:7px;">软件站分流：<A href="http://www.crsky.com/soft/24307.html" target="_blank">非凡软件</A>  <A href="http://down.admin5.com/app/79377.html" target="_blank">A5下载</A>  <A href="http://mydown.yesky.com/soft/cgi/bbs/198/466198.shtml" target="_blank">天极下载</A>  <A href="http://www.downxia.com/downinfo/25157.html" target="_blank">当下软件</A>  <A href="http://www.3987.com/xiazai/3/79/54575.html" target="_blank">统一下载</A></span>
-</span>
-</td></tr></table></td></tr></table>
-</div>
-<div class="xuxian0"></div>
-<div id="baineiron">
-<table width="500" id="DownloadBox" cellspacing="0" align="center"><tr><td width="180">
-<a href="https://github.com/FangHeXie/download/blob/master/fanghexie_android.apk?raw=true"><img src="android.png" /></a>
-</td><td width="250">
-<span class="txt3"><b>官方安卓版APP</b></span>
-<span style="position:relative;top:4px;left:0px;" class="txt_hui">
-<br>版本：1.1
-<br>发布时间：1月26日
-<br>大小：0.25MB
-<br>软件站分流：<A href="http://shouji.baidu.com/soft/item?docid=8802371" target="_blank">百度手机助手</A>  <A href="http://www.appchina.com/app/com.FangHeXie" target="_blank">应用汇</A>  <A href="http://www.wandoujia.com/apps/com.FangHeXie" target="_blank">豌豆荚</A>
-</span>
-</td></tr></table>
-</div>
-<!--告示栏-->
-<div id="gonggao">
-<div class="xuxian2"></div>
-<a href="code.html" target="_blank">获取源代码改进它</a>
-<span class="txt_hui">
-
+<div align="center" style="font-size:16px;"><strong>暂停通知</strong>
 <div class="xuxian"></div>
-<b>法律声明：</b>本程序仅供网友被网站敏感词检测程序误杀造成正常帖发不出时使用，严禁用于发布非法内容。
-</span></div></div>
+</div>
+<span class="txt2"><p>
+<br>本站现已暂停提供服务，将于6月6日重新开放使用。
+</p></span></td></tr></table>
+<div id="dibu"></div>
+</div>
 <!--页底-->
-<table width="100%" align="center" cellspacing="5" id="yedi"><tr>
-<td><span class="txt">2010-2019&nbsp;版权没有✖盗版不究
-<br><a href="http://fanghexie.sourceforge.net/" target="_blank">SourceForge分站</a>丨<a href="about.html" target="_blank">关于我们</a>丨<a href="yinsi.html" target="_blank">隐私保护</a>丨<a href="https://github.com/FangHeXie" target="_blank">开发者主页</a>丨<a href="http://www.cntszn.com/" target="_blank">苍南县天视智能科技有限公司</a>
+<table width="100%" align="center" cellspacing="5"><tr>
+<td>
 </td>
-<td width="49%"><div align="right"><button onMouseOver="this.style.backgroundColor='#cce4b4'" onMouseOut="this.style.backgroundColor='#a2be8d'" class="liuyan" onClick="window.open('http://users3.smartgb.com/g/g.php?a=s&i=g35-72788-07')">给我<br>留言</button></div>
-</span></td></tr></table>
-<!--移动端显示-->
-<div id="shouji"><div id="baineiron">
-<table width="250" id="shouji_download" cellspacing="15" align="center"><tr><td width="150" align="left">
-<span class="txt3"><b>官方安卓版APP</b></span>
-<span style="position:relative;top:4px;left:0px;" class="txt_hui">
-<br>方便又替我省带宽！
-<br>版本：1.1
-<br>大小：0.25MB</span>
-</td><td align="left" width="80" align="left">
-<a href="https://github.com/FangHeXie/download/blob/master/fanghexie_android.apk?raw=true" class="Download" target="_blank"></a>
-</td></tr></table></div></div>
+<td width="100"></td></tr></table>
 <!--页底结束-->
-<script type="text/javascript" src="bin.js" charset="utf-8"></script>
-<script type="text/javascript" src="minganci2.js" charset="utf-8"></script>
-<script language="JavaScript">
-function $(_i){return document.getElementById(_i);}
-var m=1;var clip = null;
-function doIt(){if (m==2)return true;else if (m==1) {var str_select=$('level_select').value;minganci(document.form.co.value,str_select);}else if (m==3) convert1(); else if (m==4) convert_fgf(); else if (m==5) convert_dd();else if (m==6) convert_hxw();else if (m==7) convert_paiban();$('d_clip_container').style.display = "block";if (clip==null){copyer_init();}return false;}
-function changeMode(i) {$('mode'+m).className = 'hidden_mode';$('mode'+i).className = 'shown_mode';$('modemenu'+m).className = 'modes';$('modemenu'+i).className = 'modes_sel';m=i;document.getElementById('yincang_chuli').style.visibility='hidden';}
-function copyer_init() {clip = new ZeroClipboard.Client();clip.setHandCursor(false);
-/*clip.addEventListener('load', function (client) {alert("Flash movie loaded and ready.");});*/
-clip.addEventListener('mouseOver', function (client) {clip.setText($('co').value);});
-clip.addEventListener('complete', function (client, text) {$('copyshow').innerHTML = '复制成功！';window.timer1 = setTimeout(ClearCopyShow,5000);});clip.glue( 'd_clip_button', 'd_clip_container' );}
-function CopyForIE(){window.clipboardData.setData("Text", $('co').value);$('copyshow').innerHTML = '复制成功！';window.timer1 = setTimeout(ClearCopyShow,5000);}
-function ClearCopyShow(){$('copyshow').innerHTML = '';clearTimeout(window.timer1);}
-function checkCopyer(){if (window.clipboardData) {clip = "IE Mode";$('d_clip_button').style.display = "none";} else {$('d_clip_button_ie').style.display = "none";}}
-function copyUrl2()
-{var Url2 = document.getElementById("co");
-Url2.select(); // 选择对象
-document.execCommand("Copy"); // 执行浏览器复制命令
-$('copyshow').innerHTML = '复制成功！';window.timer1 = setTimeout(ClearCopyShow,5000);}
-</script>
-<script type="text/javascript" defer>
-var loaderror = false;
-try{
-if(typeof minganci=="undefined"){$("ciku_load2").innerHTML="<div>词库载入失败！可<input type=\"button\"  onclick=\"javascript:window.location.reload()\" class=\"pbtn0\" value=\"刷新页面\"/></DIV>";};
-	if(typeof convert_paiban=="undefined"){$("load").innerHTML="在线版载入失败<br>载入错误发生在：bin.js<br>1.请<input type=\"button\" value=\"刷新\" onclick=\"javascript:window.location.reload()\" class=\"pbtn2\">页面重试</div>";loaderror=true;};
-
-}catch(e){}
-if(!loaderror){
-	$("load").innerHTML=$("loading").innerHTML.replace(/{textareaco}/ig,"co"); 
-	$("loading").innerHTML="";
-}
-var CHCommand = {
-	pool:[],
-	point:-1,
-	recordable:true,
-	redo:function(){
-		CHCommand.recordable=false;
-		CHCommand.point=CHCommand.point+1;
-		$("co").value = CHCommand.pool[CHCommand.point];
-		CHCommand.stateChange();
-		CHCommand.recordable=true;
-	},
-	undo:function(){
-		CHCommand.recordable=false;
-		CHCommand.point=CHCommand.point-1;
-		$("co").value = CHCommand.pool[CHCommand.point];
-		CHCommand.stateChange();
-		CHCommand.recordable=true;
-	},
-	stateChange:function(){
-		if(CHCommand.point > 0){
-			$("CHundo").disabled = false;
-			$("CHundo").className = "";
-		}else{
-			$("CHundo").disabled = true;
-			$("CHundo").className = "disable";
-		};
-		if(CHCommand.point < (CHCommand.pool.length-1)){
-			$("CHredo").disabled = false;
-			$("CHredo").className = "";
-		}else{
-			$("CHredo").disabled = true;
-			$("CHredo").className = "disable";
-		};
-	},
-	onChange:function(){
-		var temp = $("co").value;
-		if( (CHCommand.point<0) || (CHCommand.recordable && CHCommand.pool[CHCommand.point] != temp)){
-			if(CHCommand.point < CHCommand.pool.length-1){
-				CHCommand.pool[CHCommand.point+1] = temp;
-				while (CHCommand.pool.length > (CHCommand.point+2)){CHCommand.pool.pop();}
-			} else {
-				CHCommand.pool.push(temp);
-			}
-			CHCommand.point=CHCommand.point+1;
-			CHCommand.stateChange();
-		}
-	},
-	onSubmit:function(){
-		CHCommand.recordable=true;
-		var temp = doIt();
-		if (window.addEventListener) CHCommand.onChange();
-		CHCommand.recordable=false;
-		if(temp){ $("form").action = "http://www.xiaohexie.com/php_test.php";$("form").target = "_blank";}
-		else {$("form").action = "javascript:void(0);";$("form").target = "_self"; };
-		return temp;
-	},
-	init:function(){
-		//$("form").action = "javascript:void(0);";
-		if (window.addEventListener){
-		 	$("co").addEventListener("change", CHCommand.onChange, false);
-		 	$("co").addEventListener("propertychange", CHCommand.onChange, false);
-		 	$("form").addEventListener("submit", CHCommand.onSubmit, false);
-		} else if (window.attachEvent){
-		 	$("co").attachEvent("onchange", CHCommand.onChange);
-		 	$("co").attachEvent("onpropertychange", CHCommand.onChange);
-		 	$("form").attachEvent("onsubmit", CHCommand.onSubmit);
-		}
-		CHCommand.onChange();
-	}
-};
-try{
-document.getElementById("minganci0").innerHTML=document.getElementById("loading1").innerHTML;
-}catch(e){}
-try{
-	$("word_number").innerHTML=""+(ref.low.length+ref.medium.length+ref.high.length)+"";
-}catch(e){}
-try{
-	CHCommand.init();
-}catch(e){}
-</script>
-<script type="text/javascript">
-//flash支持判断，并隐藏相关复制按钮
-  function flashChecker() {
-    var hasFlash = 0; //是否安装了flash
-    var flashVersion = 0; //flash版本
-    if (document.all) {
-      var swf = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
-      if (swf) {
-        hasFlash = 1;
-        VSwf = swf.GetVariable("$version");
-        flashVersion = parseInt(VSwf.split(" ")[1].split(",")[0]);
-      }
-    } else {
-      if (navigator.plugins && navigator.plugins.length > 0) {
-        var swf = navigator.plugins["Shockwave Flash"];
-        if (swf) {
-          hasFlash = 1;
-          var words = swf.description.split(" ");
-          for (var i = 0; i < words.length; ++i) {
-            if (isNaN(parseInt(words[i]))) continue;
-            flashVersion = parseInt(words[i]);
-          }
-        }
-      }
-    }
-    return { f: hasFlash, v: flashVersion };
-  }
-  var fls = flashChecker();
-  var s = "";
-  if (fls.f) {$('newcopy').style.display = "none";$('jiantou').style.display = "none";}
-  else {$('d_clip_button').style.display = "none";}
-</script>
-</body>
-<!--访问情况统计代码-->
+<!--第三方统计代码-->
 <script>
 var _hmt = _hmt || [];
 (function() {
@@ -280,4 +39,5 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
+</body>
 </html>
