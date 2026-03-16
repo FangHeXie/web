@@ -4,17 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>小说章节复制助手 · 官方网站</title>
+    <title>小说章节复制助手 · 复古书香版</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            /* 保留现代字体作为后备，但标题使用衬线增加书卷气 */
             font-family: 'Segoe UI', Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
         }
 
         body {
-            background: linear-gradient(145deg, #f8faff 0%, #f0f4fe 100%);
+            /* 暖麻布渐变 + 手工纸纹理叠加 */
+            background: linear-gradient(145deg, #e7d7bb 0%, #d6bf9c 100%), 
+                        repeating-linear-gradient(45deg, rgba(140, 100, 70, 0.04) 0px, rgba(140, 100, 70, 0.04) 3px, transparent 3px, transparent 9px);
+            background-blend-mode: overlay;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -23,17 +27,18 @@
             padding: 2rem 1.5rem;
         }
 
-        /* 主卡片容器 */
+        /* 主卡片 — 仿古宣纸效果 */
         .main-card {
             max-width: 1200px;
             width: 100%;
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(248, 238, 216, 0.75);        /* 牙色底 */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border-radius: 48px;
-            box-shadow: 0 25px 50px -12px rgba(0, 30, 60, 0.25), 0 0 0 1px rgba(156, 188, 255, 0.3);
+            box-shadow: 0 30px 50px -20px rgba(70, 40, 20, 0.4), 0 0 0 1px #cbad87 inset, 0 0 0 2px rgba(255, 245, 220, 0.6) inset;
             padding: 2.5rem 2rem;
             transition: box-shadow 0.3s ease;
+            border: 1px solid #dabd9b;
         }
 
         /* 头部区域 */
@@ -41,16 +46,16 @@
             display: flex;
             align-items: center;
             gap: 1.5rem;
-            margin-bottom: 2.5rem;
             flex-wrap: wrap;
         }
 
         .logo-wrapper {
-            background: #ffffffcc;
+            background: #ecdbbc80;           /* 旧米色 */
             border-radius: 32px;
             padding: 0.5rem;
-            box-shadow: 0 10px 20px -8px rgba(0,32,64,0.2);
+            box-shadow: 0 10px 20px -8px #896e4e;
             backdrop-filter: blur(4px);
+            border: 1px solid #e2c7a2;
         }
 
         .logo {
@@ -58,26 +63,29 @@
             height: 80px;
             object-fit: contain;
             display: block;
+            filter: sepia(0.2) contrast(1.1); /* 轻微做旧logo */
         }
 
         .title-group h1 {
             font-size: 2.4rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #1A2F4F, #2D4B7A);
+            background: linear-gradient(135deg, #4f351c, #865d32); /* 赭石→深褐 */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             letter-spacing: -0.5px;
             line-height: 1.2;
+            font-family: 'Times New Roman', '宋体', 'SimSun', Georgia, serif; /* 增加复古衬线 */
+            text-shadow: 1px 1px 0 rgba(255, 235, 200, 0.5);
         }
 
         .title-group .version-badge {
-            background: #2d4b7a20;
+            background: #d6bc9b60;            /* 半透米色 */
             padding: 0.3rem 1rem;
             border-radius: 40px;
             font-size: 1rem;
-            color: #1e3a5f;
-            border: 1px solid #9bb6da60;
+            color: #543f28;                    /* 深咖啡 */
+            border: 1px solid #c8a87c;
             display: inline-block;
             margin-top: 0.4rem;
             backdrop-filter: blur(4px);
@@ -85,14 +93,14 @@
 
         .author-tag {
             margin-left: auto;
-            background: #e8edf9;
+            background: #dfccb0;                /* 暖灰褐 */
             border-radius: 60px;
             padding: 0.5rem 1.5rem;
             font-weight: 500;
-            color: #1a3b5e;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            color: #3f2d19;
+            box-shadow: 0 2px 8px rgba(70, 40, 10, 0.1);
             font-size: 1.1rem;
-            border: 1px solid white;
+            border: 1px solid #f7e5ca;
         }
 
         /* 主要内容区：截图+简介双栏 */
@@ -105,33 +113,34 @@
 
         /* 左侧截图卡片 */
         .screenshot-area {
-            background: #ffffffb3;
+            background: #f6e7d4cc;              /* 米白 */
             border-radius: 36px;
             padding: 1.5rem;
-            box-shadow: 0 20px 35px -10px #1d355750;
+            box-shadow: 0 20px 30px -12px #8b6743;
             backdrop-filter: blur(8px);
-            border: 1px solid #fffffffa;
+            border: 1px solid #eddec9;
         }
 
         .screenshot-title {
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #4d6587;
+            color: #8b6e4b;                     /* 土褐 */
             margin-bottom: 0.8rem;
         }
 
         .image-wrapper {
             overflow: hidden;
             border-radius: 24px;
-            box-shadow: 0 10px 20px -5px #0b1e32;
-            background: #f2f6ff;
+            box-shadow: 0 12px 24px -8px #593e24;  /* 暖褐阴影 */
+            background: #e1cfb3;
             cursor: pointer;
             transition: box-shadow 0.3s ease;
+            border: 1px solid #c9aa81;
         }
 
         .image-wrapper:hover {
-            box-shadow: 0 20px 30px -8px #143b66;
+            box-shadow: 0 20px 30px -8px #6c4c2e;
         }
 
         #software-screenshot {
@@ -140,17 +149,18 @@
             display: block;
             transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.1);
             will-change: transform;
-            pointer-events: none;  /* 让点击事件由父级处理，但hover效果保留 */
+            pointer-events: none;
+            filter: sepia(0.15) contrast(1.02);   /* 轻微做旧图片 */
         }
 
         .image-wrapper:hover #software-screenshot {
-            transform: scale(1.02);  /* 轻微放大 */
+            transform: scale(1.02);
         }
 
         .hint-text {
             margin-top: 0.8rem;
             font-size: 0.9rem;
-            color: #58749c;
+            color: #7b6240;
             display: flex;
             align-items: center;
             gap: 0.4rem;
@@ -158,52 +168,53 @@
 
         .hint-text i {
             font-style: normal;
-            background: #d4e0fc;
+            background: #dec29b;                 /* 浅卡其 */
             padding: 0.2rem 0.8rem;
             border-radius: 40px;
+            color: #2f1f0e;
         }
 
         /* 右侧信息卡片 */
         .info-panel {
-            background: rgba(255,255,255,0.6);
+            background: rgba(250, 239, 217, 0.7); /* 半透米色 */
             backdrop-filter: blur(12px);
             border-radius: 40px;
-            padding: 2rem 2rem 2.2rem 2rem;
-            border: 1px solid #ffffff;
-            box-shadow: 0 15px 30px -12px #232f4b30;
+            padding: 1rem 2rem 2.2rem 2rem;
+            border: 1px solid #f7e1c1;
+            box-shadow: 0 15px 30px -12px #6a4c2e;
         }
 
         .software-description {
             font-size: 1.2rem;
             line-height: 1.6;
-            color: #14273e;
+            color: #2f1d0d;                       /* 深褐 */
             font-weight: 500;
             margin-bottom: 2rem;
-            border-left: 6px solid #3d6cb0;
+            border-left: 6px solid #b68654;        /* 仿古红铜 */
             padding-left: 1.2rem;
-            background: linear-gradient(to right, #ffffff70, transparent);
+            background: linear-gradient(to right, #fdf3e2, transparent);
             border-radius: 0 20px 20px 0;
         }
 
         .spec-list {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.2rem 1.5rem;
-            margin-bottom: 2.2rem;
+            gap: 0rem 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .spec-item {
-            background: #ffffffc2;
+            background: #f6e6cfdd;                /* 米黄 */
             border-radius: 28px;
             padding: 0.7rem 1.3rem;
             backdrop-filter: blur(2px);
-            border: 1px solid white;
-            box-shadow: 0 5px 12px #00000008;
+            border: 1px solid #f9ebd2;
+            box-shadow: 0 5px 12px rgba(110, 70, 30, 0.08);
         }
 
         .spec-label {
             font-size: 0.8rem;
-            color: #60799e;
+            color: #8f714c;                        /* 栗色 */
             letter-spacing: 0.3px;
             margin-bottom: 0.2rem;
         }
@@ -211,13 +222,13 @@
         .spec-value {
             font-weight: 650;
             font-size: 1.2rem;
-            color: #102331;
+            color: #2f1e10;                         /* 深棕色 */
         }
 
         .spec-value small {
             font-size: 0.9rem;
             font-weight: 400;
-            color: #416991;
+            color: #856e48;
             margin-left: 0.3rem;
         }
 
@@ -230,8 +241,8 @@
         }
 
         .download-btn {
-            background: #1f3a60;
-            color: white;
+            background: #7b5837;                    /* 赭褐色 */
+            color: #fef5e6;
             border: none;
             padding: 1rem 2.5rem;
             border-radius: 60px;
@@ -240,46 +251,47 @@
             display: inline-flex;
             align-items: center;
             gap: 0.8rem;
-            box-shadow: 0 15px 25px -10px #17345c;
+            box-shadow: 0 15px 20px -10px #4a3421;
             transition: all 0.2s ease;
             text-decoration: none;
-            border: 1px solid #ffffff80;
+            border: 1px solid #e5c9a6;
             backdrop-filter: blur(4px);
             cursor: pointer;
         }
 
         .download-btn:hover {
-            background: #254f82;
+            background: #946d44;                    /* 暖棕 */
             transform: translateY(-3px);
-            box-shadow: 0 25px 30px -8px #102c4b;
+            box-shadow: 0 22px 28px -10px #5f3f25;
         }
 
         .download-info {
-            color: #2c4b77;
+            color: #3f2d18;
             font-weight: 500;
-            background: #e1eafb;
+            background: #ebd9bd;                    /* 米白 */
             padding: 0.4rem 1.2rem;
             border-radius: 60px;
             font-size: 1rem;
+            border: 1px solid #cfb692;
         }
 
         .footer-note {
             margin-top: 2rem;
             text-align: center;
-            color: #5a6f8d;
+            color: #6b5439;                          /* 深茶色 */
             font-size: 0.95rem;
-            border-top: 1px dashed #b7c9ed;
+            border-top: 1px dashed #d0b48b;
             padding-top: 2rem;
         }
 
-        /* ---------- 模态框 (全分辨率查看) ---------- */
+        /* 模态框 (全分辨率查看) — 深木色调 */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(35, 25, 15, 0.85);       /* 深褐遮罩 */
             backdrop-filter: blur(8px);
             display: none;
             align-items: center;
@@ -295,16 +307,16 @@
         }
 
         .modal-content {
-            background: #0f1a2b;
+            background: #32281c;                       /* 老木色 */
             border-radius: 32px;
             padding: 1.2rem;
-            box-shadow: 0 30px 60px #00000080;
+            box-shadow: 0 30px 60px #1f130b;
             max-width: 95vw;
             max-height: 95vh;
             display: flex;
             flex-direction: column;
             position: relative;
-            border: 1px solid #5375a0;
+            border: 1px solid #b4966b;
         }
 
         .modal-header {
@@ -312,21 +324,22 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 0.5rem 0.8rem 0.5rem;
-            color: white;
+            color: #eedbc5;
         }
 
         .modal-header span {
             font-size: 0.95rem;
-            color: #b3caf5;
-            background: #1e314a;
+            color: #efdbbc;
+            background: #5c4935;                       /* 深褐背景 */
             padding: 0.2rem 1rem;
             border-radius: 40px;
+            border: 1px solid #af8f64;
         }
 
         .close-modal {
-            background: #ffffff20;
+            background: #5e4a35;
             border: none;
-            color: white;
+            color: #ffeedb;
             font-size: 1.8rem;
             line-height: 1;
             width: 44px;
@@ -337,21 +350,21 @@
             align-items: center;
             justify-content: center;
             transition: background 0.2s;
-            border: 1px solid #ffffff40;
+            border: 1px solid #dbbc93;
         }
 
         .close-modal:hover {
-            background: #ffffff50;
+            background: #7e6243;
         }
 
         /* 图片滚动容器 */
         .modal-image-container {
             overflow: auto;
-            background: #0b121f;
+            background: #241e15;                       /* 深棕 */
             border-radius: 24px;
-            border: 1px solid #3a4f70;
+            border: 1px solid #876e48;
             scrollbar-width: thin;
-            scrollbar-color: #6d8fc6 #1c2b40;
+            scrollbar-color: #bb9e78 #3d2f1f;
             max-width: 90vw;
             max-height: 80vh;
             display: flex;
@@ -364,12 +377,13 @@
             height: 10px;
         }
         .modal-image-container::-webkit-scrollbar-track {
-            background: #1c2b40;
+            background: #3d2f1f;
             border-radius: 10px;
         }
         .modal-image-container::-webkit-scrollbar-thumb {
-            background: #6d8fc6;
+            background: #bb9e78;
             border-radius: 10px;
+            border: 1px solid #6e4f30;
         }
 
         #modal-img {
@@ -377,21 +391,21 @@
             width: 1023px;        /* 原始宽度全分辨率 */
             height: auto;
             object-fit: contain;
-            background: #1e293b;
-            transition: width 0.08s ease-out; /* 滚轮缩放平滑 */
+            background: #3d2c1b;  /* 深色底衬 */
+            transition: width 0.08s ease-out;
             cursor: zoom-in;
             transform-origin: top left;
+            filter: sepia(0.2);   /* 模态框内图片也微调复古 */
         }
 
-        /* 简单提示 */
         .zoom-hint {
             text-align: center;
-            color: #b3d0ff;
+            color: #e3cfb2;
             font-size: 0.85rem;
             margin-top: 0.7rem;
         }
 
-        /* 响应式 */
+        /* 响应式调整 */
         @media (max-width: 800px) {
             .hero { grid-template-columns: 1fr; }
             .title-group h1 { font-size: 2rem; }
@@ -400,6 +414,13 @@
         }
         @media (max-width: 480px) {
             .spec-list { grid-template-columns: 1fr; }
+        }
+
+        /* 额外点缀：标签“绿色单文件”样式 */
+        .info-panel > div[style*="background: #deeaff"] {
+            background: #e5cfb3 !important;           /* 米褐 */
+            color: #3a2a17 !important;
+            border: 1px solid #b79873;
         }
     </style>
 </head>
@@ -412,10 +433,10 @@
             </div>
             <div class="title-group">
                 <h1>小说章节复制助手</h1>
-                <div class="version-badge">版本 1.0 · 2026.03.16 发布</div>
+                <div class="version-badge">帮助小说作者快速复制章节正文</div>
             </div>
             <div class="author-tag">
-                👤 自来水
+                👤 作者：自来水
             </div>
         </div>
 
@@ -423,13 +444,11 @@
         <div class="hero">
             <!-- 左侧软件截图 -->
             <div class="screenshot-area">
-                <div class="screenshot-title">📸 软件界面预览 (点击图片查看全分辨率)</div>
                 <div class="image-wrapper" id="screenshot-wrapper">
-                    <img src="software.png" alt="软件界面截图" id="software-screenshot" width="1023" height="680" style="max-width:100%; height:auto;" onerror="this.src='https://via.placeholder.com/1023x680?text=software'">
+                    <img src="software.png" alt="软件界面截图" id="software-screenshot" width="1023" height="680" style="max-width:100%; height:auto;">
                 </div>
                 <div class="hint-text">
-                    <i>💡 鼠标悬停轻微放大</i>
-                    <i>🖱️ 左键点击全屏查看原图</i>
+                    <i>📸 软件界面截图</i>
                 </div>
             </div>
 
@@ -441,7 +460,7 @@
                 <div class="spec-list">
                     <div class="spec-item">
                         <div class="spec-label">最新版本</div>
-                        <div class="spec-value">1.0 <small>稳定版</small></div>
+                        <div class="spec-value">1.0</div>
                     </div>
                     <div class="spec-item">
                         <div class="spec-label">发布时间</div>
@@ -453,25 +472,24 @@
                     </div>
                     <div class="spec-item">
                         <div class="spec-label">适用平台</div>
-                        <div class="spec-value">Win All <small>11/10/8/7/XP</small></div>
+                        <div class="spec-value">Windows<small>11/10/8/7/Vista/XP</small></div>
                     </div>
                 </div>
                 <div class="download-area">
                     <a href="https://raw.githubusercontent.com/FangHeXie/download/refs/heads/master/copy-helper_v1.0.rar" class="download-btn" target="_blank" rel="noopener">
-                        ⬇️ 下载 .rar
+                        ⬇  下载 .rar
                     </a>
                     <span class="download-info">直接下载 · 无毒 · 0.7MB</span>
                 </div>
                 <div style="margin-top: 1rem; color: #3f5780; font-size:0.95rem; background: #deeaff; padding: 0.4rem 1.2rem; border-radius: 60px; display: inline-block;">
-                    ✅ 作者：自来水 · 完全免费
+                    ✅ 绿色 ✅单文件 ✅ 完全免费
                 </div>
             </div>
         </div>
 
         <!-- 脚注 -->
         <div class="footer-note">
-            ✦ 单击预览图可进入全分辨率查看器，使用鼠标滚轮放大缩小 ✦ <br>
-            © 2026 小说章节复制助手 · 让创作更专注
+            © 2026 小说章节复制助手 · 让创作更流畅
         </div>
     </div>
 
@@ -484,7 +502,7 @@
             </div>
             <!-- 可滚动容器 -->
             <div class="modal-image-container" id="modalImageContainer">
-                <img src="software.png" alt="全分辨率界面" id="modal-img" onerror="this.src='https://via.placeholder.com/1023x680?text=software'">
+                <img src="software.png" alt="全分辨率界面" id="modal-img">
             </div>
             <div class="zoom-hint">
                 ⚡ 鼠标滚轮放大/缩小 · 拖动滚动条查看细节
@@ -498,103 +516,61 @@
             const modalOverlay = document.getElementById('modalOverlay');
             const modalImg = document.getElementById('modal-img');
             const closeBtn = document.getElementById('closeModalBtn');
-            const screenshotWrapper = document.getElementById('screenshot-wrapper'); // 点击区域
+            const screenshotWrapper = document.getElementById('screenshot-wrapper');
 
-            // 滚轮缩放变量 (直接用图片宽度控制)
-            let currentImgWidth = 1023;   // 原始宽度
-            const MIN_WIDTH = 200;         // 最小200px
-            const MAX_WIDTH = 4000;         // 最大4000px
+            // 滚轮缩放变量
+            let currentImgWidth = 1023;
+            const MIN_WIDTH = 200;
+            const MAX_WIDTH = 4000;
 
-            // 打开模态框 (重置图片宽度为原始大小)
             function openModal() {
-                // 重置图片宽度到原始分辨率1023px
                 modalImg.style.width = '1023px';
                 currentImgWidth = 1023;
                 modalOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden'; // 防止背景滚动
+                document.body.style.overflow = 'hidden';
             }
 
-            // 关闭模态框
             function closeModal() {
                 modalOverlay.classList.remove('active');
-                document.body.style.overflow = ''; // 恢复滚动
+                document.body.style.overflow = '';
             }
 
-            // 点击截图区域打开模态框
             if (screenshotWrapper) {
                 screenshotWrapper.addEventListener('click', openModal);
             }
 
-            // 点击关闭按钮
             if (closeBtn) {
                 closeBtn.addEventListener('click', closeModal);
             }
 
-            // 点击遮罩背景关闭 (如果直接点击在overlay上)
             modalOverlay.addEventListener('click', function(e) {
                 if (e.target === modalOverlay) {
                     closeModal();
                 }
             });
 
-            // ESC 关闭
             window.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
                     closeModal();
                 }
             });
 
-            // ----------------- 鼠标滚轮缩放图片 (全分辨率模态框内) -----------------
-            // 事件监听在模态框内的图片上（只有模态框激活时才能触发）
+            // 滚轮缩放
             modalImg.addEventListener('wheel', function(e) {
-                // 阻止默认滚动（页面滚动）
                 e.preventDefault();
-                // 阻止冒泡，防止意外
                 e.stopPropagation();
 
-                // 判断滚轮方向
                 const delta = e.deltaY || e.detail || 0;
+                let scaleFactor = delta > 0 ? 0.9 : 1.1;
 
-                // 缩放因子：向下滚动缩小 (delta>0) ，向上滚动放大 (delta<0)
-                let scaleFactor = 1;
-                if (delta > 0) {
-                    // 缩小: 乘以0.9
-                    scaleFactor = 0.9;
-                } else if (delta < 0) {
-                    // 放大: 乘以1.1
-                    scaleFactor = 1.1;
-                }
-
-                // 计算新宽度
                 let newWidth = currentImgWidth * scaleFactor;
-
-                // 限制范围
                 if (newWidth < MIN_WIDTH) newWidth = MIN_WIDTH;
                 if (newWidth > MAX_WIDTH) newWidth = MAX_WIDTH;
 
-                // 应用新宽度
                 modalImg.style.width = newWidth + 'px';
                 currentImgWidth = newWidth;
-
-                // 可选：在控制台查看宽度，但不输出
-            }, { passive: false });  // 确保可以 preventDefault
-
-            // 为了保证触摸板也能用，使用wheel事件足够了
-
-            // 附加：如果用户点击模态框内的空白容器滚动条，不关闭。
-            // 点击图片本身也不关闭
-
-            // 另外考虑到图片可能加载较慢，但已设onerror占位
-            // 如果原始图片不存在，用占位图提示（上面html已加onerror）
-
-            // 同时，截图上的图片也可以添加备用（但因为我们有相对路径，假设文件存在）
-            // 这里给个备用方案: 如果图片加载失败，显示占位文字（内置onerror）
-
-            // 为了让缩略图点击事件不因图片没加载而失效，已经包装在wrapper上
+            }, { passive: false });
         })();
     </script>
-
-    <!-- 备注：所有资源均使用相对路径（除下载地址） software.png, logo.png 需放在同目录 -->
-    <!-- 图片原始尺寸已在注释中体现，模态框默认宽度1023px 适应全分辨率 -->
 </body>
 </html>
