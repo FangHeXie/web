@@ -1,90 +1,600 @@
-<html>
+
+<!DOCTYPE html>
+<html lang="zh">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Cache-Control" content="no-transform" /> 
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-<title>小说章节复制助手 官方网站</title>
-<meta name="keywords" content="测试">
-<meta name="description" content="测试">
-<link href="main.css" rel="stylesheet" type="text/css">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes" />
-<meta name="applicable-device"content="pc,mobile">
-  <style>
-
-
-        .zoom {
-
-
-            transition: transform .2s; /* Animation */
-
-
-            width: 300px; /* Width of the image */
-
-
-            height: 200px; /* Height of the image */
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>小说章节复制助手 · 官方网站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
         }
 
-
-        .zoom:hover {
-
-
-            transform: scale(1.5); /* Zoom in the image */
-
-
+        body {
+            background: linear-gradient(145deg, #f8faff 0%, #f0f4fe 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
         }
 
+        /* 主卡片容器 */
+        .main-card {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 48px;
+            box-shadow: 0 25px 50px -12px rgba(0, 30, 60, 0.25), 0 0 0 1px rgba(156, 188, 255, 0.3);
+            padding: 2.5rem 2rem;
+            transition: box-shadow 0.3s ease;
+        }
 
+        /* 头部区域 */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .logo-wrapper {
+            background: #ffffffcc;
+            border-radius: 32px;
+            padding: 0.5rem;
+            box-shadow: 0 10px 20px -8px rgba(0,32,64,0.2);
+            backdrop-filter: blur(4px);
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .title-group h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1A2F4F, #2D4B7A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .title-group .version-badge {
+            background: #2d4b7a20;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            color: #1e3a5f;
+            border: 1px solid #9bb6da60;
+            display: inline-block;
+            margin-top: 0.4rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .author-tag {
+            margin-left: auto;
+            background: #e8edf9;
+            border-radius: 60px;
+            padding: 0.5rem 1.5rem;
+            font-weight: 500;
+            color: #1a3b5e;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            font-size: 1.1rem;
+            border: 1px solid white;
+        }
+
+        /* 主要内容区：截图+简介双栏 */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        /* 左侧截图卡片 */
+        .screenshot-area {
+            background: #ffffffb3;
+            border-radius: 36px;
+            padding: 1.5rem;
+            box-shadow: 0 20px 35px -10px #1d355750;
+            backdrop-filter: blur(8px);
+            border: 1px solid #fffffffa;
+        }
+
+        .screenshot-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #4d6587;
+            margin-bottom: 0.8rem;
+        }
+
+        .image-wrapper {
+            overflow: hidden;
+            border-radius: 24px;
+            box-shadow: 0 10px 20px -5px #0b1e32;
+            background: #f2f6ff;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .image-wrapper:hover {
+            box-shadow: 0 20px 30px -8px #143b66;
+        }
+
+        #software-screenshot {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+            will-change: transform;
+            pointer-events: none;  /* 让点击事件由父级处理，但hover效果保留 */
+        }
+
+        .image-wrapper:hover #software-screenshot {
+            transform: scale(1.02);  /* 轻微放大 */
+        }
+
+        .hint-text {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: #58749c;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .hint-text i {
+            font-style: normal;
+            background: #d4e0fc;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+        }
+
+        /* 右侧信息卡片 */
+        .info-panel {
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(12px);
+            border-radius: 40px;
+            padding: 2rem 2rem 2.2rem 2rem;
+            border: 1px solid #ffffff;
+            box-shadow: 0 15px 30px -12px #232f4b30;
+        }
+
+        .software-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #14273e;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            border-left: 6px solid #3d6cb0;
+            padding-left: 1.2rem;
+            background: linear-gradient(to right, #ffffff70, transparent);
+            border-radius: 0 20px 20px 0;
+        }
+
+        .spec-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem 1.5rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .spec-item {
+            background: #ffffffc2;
+            border-radius: 28px;
+            padding: 0.7rem 1.3rem;
+            backdrop-filter: blur(2px);
+            border: 1px solid white;
+            box-shadow: 0 5px 12px #00000008;
+        }
+
+        .spec-label {
+            font-size: 0.8rem;
+            color: #60799e;
+            letter-spacing: 0.3px;
+            margin-bottom: 0.2rem;
+        }
+
+        .spec-value {
+            font-weight: 650;
+            font-size: 1.2rem;
+            color: #102331;
+        }
+
+        .spec-value small {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #416991;
+            margin-left: 0.3rem;
+        }
+
+        .download-area {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1.2rem;
+            margin-top: 1.2rem;
+        }
+
+        .download-btn {
+            background: #1f3a60;
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            box-shadow: 0 15px 25px -10px #17345c;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            border: 1px solid #ffffff80;
+            backdrop-filter: blur(4px);
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background: #254f82;
+            transform: translateY(-3px);
+            box-shadow: 0 25px 30px -8px #102c4b;
+        }
+
+        .download-info {
+            color: #2c4b77;
+            font-weight: 500;
+            background: #e1eafb;
+            padding: 0.4rem 1.2rem;
+            border-radius: 60px;
+            font-size: 1rem;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            text-align: center;
+            color: #5a6f8d;
+            font-size: 0.95rem;
+            border-top: 1px dashed #b7c9ed;
+            padding-top: 2rem;
+        }
+
+        /* ---------- 模态框 (全分辨率查看) ---------- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: #0f1a2b;
+            border-radius: 32px;
+            padding: 1.2rem;
+            box-shadow: 0 30px 60px #00000080;
+            max-width: 95vw;
+            max-height: 95vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid #5375a0;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 0.5rem 0.8rem 0.5rem;
+            color: white;
+        }
+
+        .modal-header span {
+            font-size: 0.95rem;
+            color: #b3caf5;
+            background: #1e314a;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+        }
+
+        .close-modal {
+            background: #ffffff20;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            line-height: 1;
+            width: 44px;
+            height: 44px;
+            border-radius: 60px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            border: 1px solid #ffffff40;
+        }
+
+        .close-modal:hover {
+            background: #ffffff50;
+        }
+
+        /* 图片滚动容器 */
+        .modal-image-container {
+            overflow: auto;
+            background: #0b121f;
+            border-radius: 24px;
+            border: 1px solid #3a4f70;
+            scrollbar-width: thin;
+            scrollbar-color: #6d8fc6 #1c2b40;
+            max-width: 90vw;
+            max-height: 80vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+
+        .modal-image-container::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        .modal-image-container::-webkit-scrollbar-track {
+            background: #1c2b40;
+            border-radius: 10px;
+        }
+        .modal-image-container::-webkit-scrollbar-thumb {
+            background: #6d8fc6;
+            border-radius: 10px;
+        }
+
+        #modal-img {
+            display: block;
+            width: 1023px;        /* 原始宽度全分辨率 */
+            height: auto;
+            object-fit: contain;
+            background: #1e293b;
+            transition: width 0.08s ease-out; /* 滚轮缩放平滑 */
+            cursor: zoom-in;
+            transform-origin: top left;
+        }
+
+        /* 简单提示 */
+        .zoom-hint {
+            text-align: center;
+            color: #b3d0ff;
+            font-size: 0.85rem;
+            margin-top: 0.7rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 800px) {
+            .hero { grid-template-columns: 1fr; }
+            .title-group h1 { font-size: 2rem; }
+            .main-card { padding: 1.8rem; }
+            .author-tag { margin-left: 0; }
+        }
+        @media (max-width: 480px) {
+            .spec-list { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
-<body onLoad="checkCopyer();">
-<!--页顶开始-->
-<table width="100%" align="center" cellspacing="5" id="daohang"><tr><td width="52"><div class="logo"></div></td>
-<td><b>小说章节复制助手</b><div class="gaodu"></div><span class="txt">小说章节一键复制</td></tr></table>
-<!--页顶结束-->
-<div id="neiron">
+<body>
+    <div class="main-card">
+        <!-- 头部区 -->
+        <div class="header">
+            <div class="logo-wrapper">
+                <img src="logo.png" alt="程序图标" class="logo" onerror="this.src='https://via.placeholder.com/128?text=logo'">
+            </div>
+            <div class="title-group">
+                <h1>小说章节复制助手</h1>
+                <div class="version-badge">版本 1.0 · 2026.03.16 发布</div>
+            </div>
+            <div class="author-tag">
+                👤 自来水
+            </div>
+        </div>
 
-<div id="baineiron">
-<table width="800" id="DownloadBox" cellspacing="0" align="center"><tr><td width="0">
-<img src="copy-helper.png" alt="软件截图" width="600" class="zoom">
-</td><td width="400">
-<span class="txt3"><b>小说章节复制助手</b></span>
-</p></p>
+        <!-- 核心展示区 -->
+        <div class="hero">
+            <!-- 左侧软件截图 -->
+            <div class="screenshot-area">
+                <div class="screenshot-title">📸 软件界面预览 (点击图片查看全分辨率)</div>
+                <div class="image-wrapper" id="screenshot-wrapper">
+                    <img src="software.png" alt="软件界面截图" id="software-screenshot" width="1023" height="680" style="max-width:100%; height:auto;" onerror="this.src='https://via.placeholder.com/1023x680?text=software'">
+                </div>
+                <div class="hint-text">
+                    <i>💡 鼠标悬停轻微放大</i>
+                    <i>🖱️ 左键点击全屏查看原图</i>
+                </div>
+            </div>
 
-小说章节复制助手 是一款帮助小说作者解析TXT格式小说文件的工具。
-</p>
-它能<b>简化复制章节的流程</b>，一键复制出TXT文件中的卷名、卷首语、卷尾语、章节名、章节正文，帮助小说作者快速复制所需内容。
-</p></p>
-<b>适用平台：</b>Win All（XP/vista/Win7Win8/Win8.1/Win10/Win11）
-</p></p></p>
-</td></tr></table>
-</div>
+            <!-- 右侧详情与下载 -->
+            <div class="info-panel">
+                <div class="software-description">
+                    📖 它能简化复制章节的流程，一键复制出TXT文件中的卷名、卷首语、卷尾语、章节名、章节正文，帮助小说作者快速复制所需内容。
+                </div>
+                <div class="spec-list">
+                    <div class="spec-item">
+                        <div class="spec-label">最新版本</div>
+                        <div class="spec-value">1.0 <small>稳定版</small></div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">发布时间</div>
+                        <div class="spec-value">2026.03.16</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">软件大小</div>
+                        <div class="spec-value">0.7 MB</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">适用平台</div>
+                        <div class="spec-value">Win All <small>11/10/8/7/XP</small></div>
+                    </div>
+                </div>
+                <div class="download-area">
+                    <a href="https://raw.githubusercontent.com/FangHeXie/download/refs/heads/master/copy-helper_v1.0.rar" class="download-btn" target="_blank" rel="noopener">
+                        ⬇️ 下载 .rar
+                    </a>
+                    <span class="download-info">直接下载 · 无毒 · 0.7MB</span>
+                </div>
+                <div style="margin-top: 1rem; color: #3f5780; font-size:0.95rem; background: #deeaff; padding: 0.4rem 1.2rem; border-radius: 60px; display: inline-block;">
+                    ✅ 作者：自来水 · 完全免费
+                </div>
+            </div>
+        </div>
 
+        <!-- 脚注 -->
+        <div class="footer-note">
+            ✦ 单击预览图可进入全分辨率查看器，使用鼠标滚轮放大缩小 ✦ <br>
+            © 2026 小说章节复制助手 · 让创作更专注
+        </div>
+    </div>
 
-<!--下载栏-->
+    <!-- ========== 全分辨率图片模态框 ========== -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>软件界面原始分辨率 1023×680 · 滚轮缩放</span>
+                <button class="close-modal" id="closeModalBtn" aria-label="关闭">&times;</button>
+            </div>
+            <!-- 可滚动容器 -->
+            <div class="modal-image-container" id="modalImageContainer">
+                <img src="software.png" alt="全分辨率界面" id="modal-img" onerror="this.src='https://via.placeholder.com/1023x680?text=software'">
+            </div>
+            <div class="zoom-hint">
+                ⚡ 鼠标滚轮放大/缩小 · 拖动滚动条查看细节
+            </div>
+        </div>
+    </div>
 
-<div id="huangneiron">
-<table width="500" id="DownloadBox" cellspacing="0" align="center"><tr><td>
-<table width="100%" cellspacing="0"><tr><td><a href="https://raw.githubusercontent.com/FangHeXie/download/refs/heads/master/copy-helper_v1.0.rar" class="Download" target="_blank"></a></td>
-<td width="100%"><table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td width="160"><span class="txt3"><b>&nbsp;软件下载</b></span></td><td align="left"><td></tr></table>
-<span style="position:relative;top:4px;left:10px;width: 100%;" class="txt_hui">
-版本：1.0
-<br>发布时间：2026年3月16日
-<br>大小：0.8MB
-<br><span style="position:relative;top:7px;">软件站分流：<A href="https://github.com/FangHeXie/download/blob/master/copy-helper_v1.0.rar" target="_blank">待添加请稍后</A>
-</span>
-</td></tr></table></td></tr></table>
-</div>
-<div class="xuxian0"></div>
+    <script>
+        (function() {
+            // 获取元素
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalImg = document.getElementById('modal-img');
+            const closeBtn = document.getElementById('closeModalBtn');
+            const screenshotWrapper = document.getElementById('screenshot-wrapper'); // 点击区域
 
-<!--告示栏-->
-<div id="gonggao">
+            // 滚轮缩放变量 (直接用图片宽度控制)
+            let currentImgWidth = 1023;   // 原始宽度
+            const MIN_WIDTH = 200;         // 最小200px
+            const MAX_WIDTH = 4000;         // 最大4000px
 
-<span class="txt_hui">
+            // 打开模态框 (重置图片宽度为原始大小)
+            function openModal() {
+                // 重置图片宽度到原始分辨率1023px
+                modalImg.style.width = '1023px';
+                currentImgWidth = 1023;
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; // 防止背景滚动
+            }
 
-<!--页底-->
-2026&nbsp;版权所有
-</span
+            // 关闭模态框
+            function closeModal() {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = ''; // 恢复滚动
+            }
+
+            // 点击截图区域打开模态框
+            if (screenshotWrapper) {
+                screenshotWrapper.addEventListener('click', openModal);
+            }
+
+            // 点击关闭按钮
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeModal);
+            }
+
+            // 点击遮罩背景关闭 (如果直接点击在overlay上)
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+
+            // ESC 关闭
+            window.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+
+            // ----------------- 鼠标滚轮缩放图片 (全分辨率模态框内) -----------------
+            // 事件监听在模态框内的图片上（只有模态框激活时才能触发）
+            modalImg.addEventListener('wheel', function(e) {
+                // 阻止默认滚动（页面滚动）
+                e.preventDefault();
+                // 阻止冒泡，防止意外
+                e.stopPropagation();
+
+                // 判断滚轮方向
+                const delta = e.deltaY || e.detail || 0;
+
+                // 缩放因子：向下滚动缩小 (delta>0) ，向上滚动放大 (delta<0)
+                let scaleFactor = 1;
+                if (delta > 0) {
+                    // 缩小: 乘以0.9
+                    scaleFactor = 0.9;
+                } else if (delta < 0) {
+                    // 放大: 乘以1.1
+                    scaleFactor = 1.1;
+                }
+
+                // 计算新宽度
+                let newWidth = currentImgWidth * scaleFactor;
+
+                // 限制范围
+                if (newWidth < MIN_WIDTH) newWidth = MIN_WIDTH;
+                if (newWidth > MAX_WIDTH) newWidth = MAX_WIDTH;
+
+                // 应用新宽度
+                modalImg.style.width = newWidth + 'px';
+                currentImgWidth = newWidth;
+
+                // 可选：在控制台查看宽度，但不输出
+            }, { passive: false });  // 确保可以 preventDefault
+
+            // 为了保证触摸板也能用，使用wheel事件足够了
+
+            // 附加：如果用户点击模态框内的空白容器滚动条，不关闭。
+            // 点击图片本身也不关闭
+
+            // 另外考虑到图片可能加载较慢，但已设onerror占位
+            // 如果原始图片不存在，用占位图提示（上面html已加onerror）
+
+            // 同时，截图上的图片也可以添加备用（但因为我们有相对路径，假设文件存在）
+            // 这里给个备用方案: 如果图片加载失败，显示占位文字（内置onerror）
+
+            // 为了让缩略图点击事件不因图片没加载而失效，已经包装在wrapper上
+        })();
+    </script>
+
+    <!-- 备注：所有资源均使用相对路径（除下载地址） software.png, logo.png 需放在同目录 -->
+    <!-- 图片原始尺寸已在注释中体现，模态框默认宽度1023px 适应全分辨率 -->
 </body>
 </html>
