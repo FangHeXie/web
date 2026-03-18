@@ -385,7 +385,7 @@
 
         #modal-img {
             display: block;
-            width: 1023px;        /* 原始宽度全分辨率 */
+            width: 1024px;        /* 原始宽度全分辨率 */
             height: auto;
             object-fit: contain;
             background: #3d2c1b;  /* 深色底衬 */
@@ -442,7 +442,7 @@
             <!-- 左侧软件截图 -->
             <div class="screenshot-area">
                 <div class="image-wrapper" id="screenshot-wrapper">
-                    <img src="software.png" alt="软件界面截图" id="software-screenshot" width="1023" height="680" style="max-width:100%; height:auto;">
+                    <img src="software.png" alt="软件界面截图" id="software-screenshot" width="1024" height="728" style="max-width:100%; height:auto;">
                 </div>
                 <div class="hint-text">
                     <i>📸 软件界面截图</i>
@@ -457,15 +457,15 @@
                 <div class="spec-list">
                     <div class="spec-item">
                         <div class="spec-label">最新版本</div>
-                        <div class="spec-value">1.0</div>
+                        <div class="spec-value">1.5</div>
                     </div>
                     <div class="spec-item">
                         <div class="spec-label">发布时间</div>
-                        <div class="spec-value">2026.03.16</div>
+                        <div class="spec-value">2026.03.18</div>
                     </div>
                     <div class="spec-item">
                         <div class="spec-label">软件大小</div>
-                        <div class="spec-value">0.7 MB</div>
+                        <div class="spec-value">1.1 MB</div>
                     </div>
                     <div class="spec-item">
                         <div class="spec-label">适用平台</div>
@@ -473,7 +473,7 @@
                     </div>
                 </div>
                 <div class="download-area">
-                    <a href="https://raw.githubusercontent.com/FangHeXie/download/refs/heads/master/copy-helper_v1.0.rar" class="download-btn" target="_blank" rel="noopener">⬇  下载 .rar</a>
+                    <a href="https://raw.githubusercontent.com/FangHeXie/download/refs/heads/master/copy-helper.zip" class="download-btn" target="_blank" rel="noopener">⬇  下载 .zip</a>
                     <span class="download-info" font-size:0.95rem;>✅免安装无捆绑 ✅完全免费</span>
                 </div>
                 <div style="margin-top: 1rem; color: #3f5780; font-size:0.95rem; background: #deeaff; padding: 0.4rem 1.2rem; border-radius: 60px; display: inline-block;">
@@ -513,13 +513,13 @@
             const screenshotWrapper = document.getElementById('screenshot-wrapper');
 
             // 滚轮缩放变量
-            let currentImgWidth = 1023;
+            let currentImgWidth = 1024;
             const MIN_WIDTH = 200;
             const MAX_WIDTH = 4000;
 
             function openModal() {
-                modalImg.style.width = '1023px';
-                currentImgWidth = 1023;
+                modalImg.style.width = '1024px';
+                currentImgWidth = 1024;
                 modalOverlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
